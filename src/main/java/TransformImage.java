@@ -17,17 +17,15 @@ import static org.opencv.imgproc.Imgproc.resize;
 public class TransformImage {
 
 
-
-
-    public static void resizeImage(String file) {
+    public static void resizeImage(String file,int width, int height) {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 
         Mat path = imread(file);
         Mat resizeimage = new Mat();
-        Size scaleSize = new Size(50, 50);
+        Size scaleSize = new Size(width, height);
         resize(path, resizeimage, scaleSize, 0, 0, INTER_AREA);
         Imgcodecs.imwrite(file, resizeimage);
-        System.out.println("Done Image Resize");
+        System.out.println("Done Image convert to Gray");
 
     }
 
@@ -44,12 +42,13 @@ public class TransformImage {
         //write gray image on disk
         Imgcodecs.imwrite(file, image);
         System.out.println("Done Image Resize");
-
-
     }
-    public static void copyFile (String source, String dest) throws IOException {
+
+    public static void copyFile(String source, String dest) throws IOException {
         File sourceFile = new File(source);
         File destFile = new File(dest);
         Files.copy(sourceFile.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
     }
 }
+
+

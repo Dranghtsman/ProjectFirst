@@ -15,12 +15,17 @@ public class Main {
 //
 
             Scanner inp = new Scanner(System.in);
-            System.out.format("Please Enter a number : %n" +
-                    " 1 -> Resize image %n 0 -> Skip this step %n");
+            System.out.format("Please enter a number :" +
+                    " %n 1 -> Resize image %n 0 -> Skip this step %nchoice: ");
+
             int chois1 = inp.nextInt();
 
             if (chois1 == 1) {
-                TransformImage.resizeImage(tempFile);
+                System.out.print("Please enter image width :");
+                int width = inp.nextInt();
+                System.out.print("Please enter image height :");
+                int height = inp.nextInt();
+                TransformImage.resizeImage(tempFile, width, height);
 
             } else if (chois1 == 0) {
 
@@ -29,7 +34,8 @@ public class Main {
 
 
             Scanner write = new Scanner(System.in);
-            System.out.format("Please Enter a number : %n 1 -> Image make Gray %n 0 -> Skip this step %n");
+            System.out.format("Please Enter a number :" +
+                    " %n 1 -> Change color to Gray %n 0 -> Skip this step %n%nchoice: ");
             int chois = write.nextInt();
             if (chois == 1) {
                 TransformImage.convertToGray(tempFile);
@@ -42,38 +48,30 @@ public class Main {
             ImgageTransformerDAO imgageTransformerDAO = new ImgageTransformerDAO();
 
 
-            //String filePath= "d:\\ss.jpg";
             Scanner input = new Scanner(System.in);
-            System.out.println("write image name ");
+            System.out.println("Enter image identifier, whitch will be used in database: ");
             String name = input.nextLine();
-            System.out.println("Now write image path like this d:\\imagename.jpg");
-            Scanner input1 = new Scanner(System.in);
-            String filePath = input1.nextLine();
-
-            imgageTransformerDAO.insertImage(filePath, name);
+            imgageTransformerDAO.insertImage(tempFile, name);
 
 
-            //String name = "sss";
-
-            System.out.println("Image is Write to database");
+            System.out.println("Image was Write into database");
 
             ImgageTransformerDAO writeF = new ImgageTransformerDAO();
             Scanner wf = new Scanner(System.in);
-            System.out.println("Download image to database write path example d:\\imagename.jpg");
+            System.out.println("Save image from database to disk (path example d:\\imagename.jpg");
             String fileName = wf.nextLine();
             Scanner wf1 = new Scanner(System.in);
-            System.out.println("Download file from deskription write deskription  example Bird----");
+            System.out.println("Enter image identifier(file name) on database (example rope");
             name = wf1.nextLine();
-            //String fileName = "d:\\ccc.jpg";
-            //String name = "Bird----";
+
             InputStream iStream = ImgageTransformerDAO.writetoFile(name);
             if (iStream == null) {
-                System.out.println("img not read from database ");
+                System.out.println("Image wasn't read from database");
                 return;
             }
             File file = new File(fileName);
             FileOutputStream outputStr = new FileOutputStream(file);
-            System.out.println("Image write to file from database " + fileName);
+            System.out.println("Image was written from database to disk" + fileName);
 
             byte[] buffer = new byte[1024];
             while (iStream.read(buffer) > 0) {
@@ -87,4 +85,5 @@ public class Main {
         }
 
 
-    }}
+    }
+}
