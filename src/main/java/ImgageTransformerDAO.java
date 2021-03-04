@@ -6,7 +6,7 @@ public class ImgageTransformerDAO {
     public static java.sql.Connection getConnection() throws SQLException, ClassNotFoundException {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/everything_for_the_mountains?user=root&password=&serverTimezone=UTC");
+        return DriverManager.getConnection("jdbc:mysql://localhost:3306/everything_for_the_mountains?user=pamoka&password=pamoka123@&serverTimezone=UTC");
     }
 
 
@@ -20,7 +20,7 @@ public class ImgageTransformerDAO {
 
 
             statement.setString(1, name);
-             statement.setBinaryStream(2, (InputStream) inputStream);
+             statement.setBinaryStream(2,  inputStream);
 
              statement.executeUpdate();
 
@@ -29,13 +29,13 @@ public class ImgageTransformerDAO {
 
 }
 
-    public static InputStream writetoFile(String name) throws Exception {
+    public static InputStream writeFileToDB(String name) throws Exception {
 
         String sqlString =
                 "SElECT photo  FROM inventory WHERE name=? ";
 
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(sqlString);) {
+             PreparedStatement preparedStatement = connection.prepareStatement(sqlString)) {
 
             preparedStatement.setString(1, name);
 
