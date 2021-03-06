@@ -1,8 +1,14 @@
-
+Java OpenCV from Maven
+Add the following dependency in your POM file:
+<dependency>
+            <groupId>org.openpnp</groupId>
+            <artifactId>opencv</artifactId>
+            <version>4.3.0-0</version>
+        </dependency>
 
 Create Database Mysql:
 
-CCREATE DATABASE everything_for_the_mountains;
+CREATE DATABASE everything_for_the_mountains;
 USE everything_for_the_mountains;
 CREATE TABLE inventory
 (
