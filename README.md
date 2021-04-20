@@ -1,10 +1,12 @@
 Java OpenCV from Maven
+
 Add the following dependency in your POM file:
+ https://mvnrepository.com/artifact/org.openpnp/opencv 
 <dependency>
-            <groupId>org.openpnp</groupId>
-            <artifactId>opencv</artifactId>
-            <version>4.3.0-0</version>
-        </dependency>
+    <groupId>org.openpnp</groupId>
+    <artifactId>opencv</artifactId>
+    <version>4.3.0-0</version>
+</dependency>
 
 Create Database Mysql:
 
